@@ -51,7 +51,7 @@ class Main extends PluginBase implements Listener
         
         $damagerhealth = $damager->getHealth();
         $weapon = $killer->getInventory()->getItemInHand()->getName();
-        $player->sendMessage(TextFormat::RED. $damagername .TextFormat::GOLD." killed you with " .TextFormat::LIGHT_PURPLE.$killer->getHealth().TextFormat::GOLD." hearts left and while using ".TextFormat::BLUE.$killer->getInventory()->getItemInHand()->getName().TextFormat::GOLD."!");
+        $player->sendMessage(TextFormat::RED. $damagername .TextFormat::GOLD." killed you with " .TextFormat::LIGHT_PURPLE. $damagerhealth .TextFormat::GOLD." hearts left and while using ".TextFormat::BLUE. $weapon .TextFormat::GOLD."!");
         
         $damager = $cause->getDamager();
         if($damager instanceof Player) {
