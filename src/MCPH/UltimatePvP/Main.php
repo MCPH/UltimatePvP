@@ -133,7 +133,8 @@ class Main extends PluginBase implements Listener
       if($sender instanceof Player) {
         if($sender->hasPermission("stats.kills")) {
           $kills = $this->config->getNested($playername . ".kills");
-          $sender->sendMessage(TextFormat::GREEN . "Kills:" . TextFormat::AQUA . "$kills");
+          $sender->sendMessage(TextFormat::DARK_GREEN . "--- " . TextFormat::LIGHT_PURPLE . TextFormat::BOLD . "Stats" . TextFormat::RESET . TextFormat::DARK_GREEN . " ---");
+          $sender->sendMessage(TextFormat::DARK_GREEN . "Kills: " . TextFormat::GREEN . $kills)
         }
         else {
           $sender->sendMessage(TextFormat::RED . "You don't have permissions to use this command.");
