@@ -3,6 +3,7 @@
 namespace MCPH\UltimatePvP;
 
 use pocketmine\Player;
+use pocketmine\Server;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
@@ -120,6 +121,7 @@ class Main extends PluginBase implements Listener
       $player = $event->getPlayer();
       if((time() - $this->players[$player->getName()]) < $this->interval){
         $player->kill();
+        Server::getInstance()->broadcastMessage(TextFormat::DARK_PURPLE . $player->getName() . TextFormat::RED . " combat logged. " . TextFormat::DARK_PURPLE . "$$penalty" . TextFormat::RED . " was removed from its account.")
       }
     unset($this->players[$player->getName()]);
     if(isset($this->tasks[$player->getName()])) $this->getServer()->getScheduler()->cancelTask($this->tasks[$player->getName()]);unset($this->tasks[$player->getName()]);
