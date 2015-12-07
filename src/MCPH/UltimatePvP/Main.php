@@ -64,10 +64,10 @@ class Main extends PluginBase implements Listener
       if(isset($this->tasks[$player->getName()])){
         $this->getServer()->getScheduler()->cancelTask($this->tasks[$player->getName()]);
       }
-      $this->tasks[$player->getName()] = $this->getServer()->getScheduler()->scheduleRepeatingTask(new TimeMsg($this, $player), 20)->getTaskId();
+      $this->tasks[$player->getName()] = $this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $player), 20)->getTaskId();
       }else{
         $player->sendMessage(TextFormat::RED . "You are in PvP! Do not log out!");
-        $this->tasks[$player->getName()] = $this->getServer()->getScheduler()->scheduleRepeatingTask(new TimeMsg($this, $player), 20)->getTaskId();
+        $this->tasks[$player->getName()] = $this->getServer()->getScheduler()->scheduleRepeatingTask(new MessageTask($this, $player), 20)->getTaskId();
       }
     $this->players[$player->getName()] = time();
   }
@@ -104,6 +104,7 @@ class Main extends PluginBase implements Listener
           $damagername = strtolower($damager->getName());
           $this->config->setNested($damagername . ".kills", $this->config->getNested($damagername . ".kills") + 1);
           $this->config->save(); // Important!
+          $damager->sendPopup(TextFormat::GREEN . "+" . TextFormat::DARK_GREEN . "1" . TextFormat::AQUA . " to your kills!")
         }  
       }
     }  
